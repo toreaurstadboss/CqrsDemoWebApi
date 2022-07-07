@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace CqrsDemoWebApi.Features.Books
+namespace CqrsDemoWebApi.Features.Books.Query
 {
     public class GetBooks
     {

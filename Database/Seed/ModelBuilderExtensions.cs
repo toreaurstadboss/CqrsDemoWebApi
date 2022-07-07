@@ -11,7 +11,7 @@ namespace CqrsDemoWebApi.Database.Seed
             var books = JsonConvert.DeserializeObject<Book[]>(jsonInput);
 
             int bookId = 0;
-            foreach (var book in books)
+            foreach (var book in books!)
             {
                 bookId++;
                 book.BookId = bookId; 

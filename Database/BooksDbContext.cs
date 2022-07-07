@@ -12,9 +12,9 @@ namespace CqrsDemoWebApi.Database
         {
            
             _hostingEnvironment = hostingEnvironment;
-        }   
+        }
 
-        public DbSet<Book> Books { get; set; }  
+        public DbSet<Book> Books { get; set; } = null!;  
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

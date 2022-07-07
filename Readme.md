@@ -20,4 +20,20 @@ which again should call MediatR and demonstrate some simple
 CQRS usage towards Sql Server / EntityFrameworkCore
 
 
+![Swagger ui](./swagger123.png)
+
+Sample data for a new book to be inserted into the book db : 
+
+```json
+{
+  "title": "Mythical Man Month",
+  "author": "Frederick Brooks",
+  "year": 1975,
+  "country": "USA",
+  "imagelink": "",
+"pages": 222
+}
+```
+
+
 Last update : 07. July 2022 
