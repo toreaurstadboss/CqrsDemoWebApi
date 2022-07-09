@@ -31,11 +31,16 @@ Sample data for a new book to be inserted into the book db :
   "year": 1975,
   "country": "USA",
   "imagelink": "",
-"pages": 222
+  "pages": 222,
+  "language": "English",
+  "link": "Gutenberg-project.de"
 }
+
 ```
 
+The demo shows logging also inside Seq (via SeriLog) ! 
 
+![Seq ui](./seq123.png)
 
 
 Last update : 07. July 2022 
