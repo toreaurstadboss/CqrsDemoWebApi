@@ -18,12 +18,30 @@ namespace CqrsDemoWebApi.Features.Books.Pipeline
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            _logger.LogInformation($"Handling request {typeof(TRequest).Name}");
-            var response = await next();
-            string? responseData = null;
+            string? requestData = null;
+
             if (_environment.IsDevelopment())
             {
-                //log serializable payload data in response (as json format) to SeriLog if we are in Development environment and the payloa is below 50 kB in serialized size
+                //log serializable payload data in request (as json format) to SeriLog if we are inside Development environment and the payload is below 50 kB in serializable size
+                try
+                {
+                    requestData = request != null ? JsonConvert.SerializeObject(request) : null;
+                    if (requestData?.Length > 50 * 1028)
+                        requestData = null; //avoid showing data larger than 100 kB in serialized form in the logs of Seq / SeriLog                    
+                }
+                catch (Exception)
+                {
+                    //ignore 
+                }
+            }
+            _logger.LogInformation($"Handling request {typeof(TRequest).Name} {{@requestData}}", requestData);
+        
+            var response = await next();
+
+            string? responseData = null;
+            if (_environment.IsDevelopment())
+            {              
+                //log serializable payload data in response (as json format) to SeriLog if we are in Development environment and the payload is below 50 kB in serialized size
                 try
                 {
                     responseData = response != null ? JsonConvert.SerializeObject(response) : null;
